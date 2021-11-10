@@ -1,0 +1,149 @@
+import java.util.Date;
+class Item {
+
+    private String name;
+
+    private double price;
+
+    Item(String name, double price) {
+
+        this.name = name;
+
+        this.price = price;
+
+    }
+
+    public String getName() {
+
+        return name;
+
+    }
+
+    public double getPrice() {
+
+        return price;
+
+    }
+
+}
+
+
+
+class FoodItem extends Item {
+
+    private Date expires;
+
+    FoodItem(String name, double price, Date expires) {
+        super(name, price);
+
+        this.expires = expires;
+
+    }
+
+    public Date getExpires() {
+
+        return expires;
+
+    }
+
+    @Override
+
+    public String toString() {
+
+        return "FoodItem name='" + getName()
+
+            +
+            "' price='" + getPrice()
+
+            +
+            "' expires='" + getExpires() + "'";
+
+    }
+
+    public static void main(String[] args) {
+
+        FoodItem[] items = new FoodItem[10];
+
+        for (int i = 0; i < items.length; i++) {
+
+            items[i] = new FoodItem("Item " + i, 12.3 * i,
+
+                new Date(i * 1000 * 60 * 60 * 24));
+
+
+
+
+
+
+
+
+        }
+
+        for (FoodItem item: items) {
+
+            System.out.println(item);
+
+        }
+
+    }
+
+}
+
+class NonFoodItem extends Item {
+
+    private String[] materials;
+
+    NonFoodItem(String name, double price, String[] materials) {
+        super(name, price);
+
+        this.materials = materials;
+
+    }
+
+    public String[] getMaterials() {
+
+        return materials;
+
+    }
+
+    @Override
+
+    public String toString() {
+
+        String m = "[";
+
+        for (int i = 0; i < materials.length; i++) {
+
+            m += (i == 0 ? "" : ",") + materials[i];
+
+        }
+
+        m += "]";
+
+        return "NonFoodItem name='" + getName() + "' price='" + getPrice() + "' materials='" + m + "'";
+
+    }
+
+    public static void main(String[] args) {
+        NonFoodItem[] items = new NonFoodItem[10];
+
+        for (int i = 0; i < items.length; i++) {
+
+            items[i] = new NonFoodItem("Item " + i, 12.3 * i,
+
+                new String[] {
+                    "butter",
+                    "cream"
+                });
+
+        }
+
+        for (NonFoodItem item: items) {
+
+            System.out.println(item);
+
+        }
+
+    }
+
+}
